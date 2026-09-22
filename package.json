@@ -32,7 +32,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kurtiz/bvault-js.git"
+    "url": "git+https://github.com/OSSAfrica/bvault-js.git"
   },
   "keywords": [
     "crypto",
@@ -52,7 +52,7 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kurtiz/bvault-js/issues"
+    "url": "https://github.com/OSSAfrica/bvault-js/issues"
   },
-  "homepage": "https://github.com/kurtiz/bvault-js#readme"
+  "homepage": "https://github.com/OSSAfrica/bvault-js#readme"
 }
