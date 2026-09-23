@@ -131,12 +131,12 @@ you.
 
 ## Local commands
 
-| Command                   | What it does                      |
-| ------------------------- | --------------------------------- |
-| `npm run release`         | Interactive changelog entry       |
-| `npm run release:version` | Apply the bump and write the lock |
-| `npm run release:check`   | Exit 0 if a publish is owed       |
-| `npm run release:publish` | Publish from the lock             |
+| Command                   | What it does                         |
+| ------------------------- | ------------------------------------ |
+| `npm run release`         | Interactive changelog entry          |
+| `npm run release:version` | Apply the bump and write the lock    |
+| `npm run release:check`   | Print `pending` if a publish is owed |
+| `npm run release:publish` | Publish from the lock                |
 
 Tegami requires **Node 24+**. That floor applies to these scripts only — it is
 deliberately not declared in `engines`, because bvault-js ships to browsers and

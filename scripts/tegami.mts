@@ -114,12 +114,25 @@ async function materializeCommitChangelogs(): Promise<number> {
   return entries.length;
 }
 
-await runCli(release, {
-  async version() {
-    const count = await materializeCommitChangelogs();
-    if (count > 0) {
-      console.log(`[tegami] generated ${count} changelog file(s) from commits`);
-    }
-    return release.draft();
-  },
-});
+/**
+ * Tegami's own `check-publish` exits 1 both when nothing is owed and when it
+ * crashes, so CI could not tell a failed check from "nothing to publish" and
+ * would carry on versioning. Print the status instead (`pending` means a
+ * publish is owed); any failure then surfaces as a non-zero exit.
+ */
+if (process.argv[2] === 'check-publish') {
+  const { status } = await release.getPublishStatus();
+  console.log(status);
+} else {
+  await runCli(release, {
+    async version() {
+      const count = await materializeCommitChangelogs();
+      if (count > 0) {
+        console.log(
+          `[tegami] generated ${count} changelog file(s) from commits`,
+        );
+      }
+      return release.draft();
+    },
+  });
+}

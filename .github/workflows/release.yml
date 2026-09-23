@@ -85,8 +85,13 @@ jobs:
 
       - name: Is a publish owed?
         id: state
+        # release:check prints the publish status; if it fails, this step fails
+        # (the default shell runs with -e -o pipefail) rather than being read
+        # as "nothing to publish".
         run: |
-          if npm run release:check --silent; then
+          status=$(npm run release:check --silent | tail -n 1)
+          echo "Publish status: $status"
+          if [ "$status" = "pending" ]; then
             echo "publish=true" >> "$GITHUB_OUTPUT"
           else
             echo "publish=false" >> "$GITHUB_OUTPUT"
