@@ -80,8 +80,8 @@ jobs:
           npm run build
           npm run check-format
           npm run test:run
-          npx --yes publint@latest
-          npx --yes @arethetypeswrong/cli@latest --pack . --profile node16
+          npx --no-install publint
+          npx --no-install attw --pack . --profile node16
 
       - name: Is a publish owed?
         id: state
@@ -150,7 +150,7 @@ jobs:
       # npm >= 11.5.1. Without this the publish falls back to token auth - and
       # there is no token - so it fails at the last step.
       - name: Upgrade npm for trusted publishing
-        run: npm install -g npm@latest
+        run: npm install -g npm@12.1.0
 
       - name: Install Dependencies
         run: npm ci
